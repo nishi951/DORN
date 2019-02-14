@@ -1,0 +1,5 @@
+Notes on installing caffe on ares for DORN
+Mark Nishimura 2019
+
+- See install_clean.sh for the full procedure.
+- Use Python 2.7 for everything.

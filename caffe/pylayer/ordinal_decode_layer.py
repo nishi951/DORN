@@ -20,8 +20,8 @@ class OrdinalDecodeLayer(caffe.Layer):
         W = bottom[0].data.shape[3]
         ord_labels = bottom[0].data.copy()
         decode_label = np.zeros((N, 1, H, W), dtype=np.float32)
-        ord_num = C/2
-        for i in xrange(ord_num):
+        ord_num = C//2
+        for i in range(int(ord_num)):
             ord_i = ord_labels[:,2*i:2*i+2,:,:]
             decode_label = decode_label + np.argmax(ord_i, axis=1)
         top[0].reshape(*decode_label.shape)

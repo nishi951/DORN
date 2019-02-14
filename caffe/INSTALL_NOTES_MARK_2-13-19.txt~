@@ -1,0 +1,5 @@
+Notes on installing caffe on ares for DORN
+Mark Nishimura 2019
+
+- See install_clean.sh for the full procedure.
+- Need to modify pylayer/ordinal_decode_layer.py to remove the xrange and add int(ord_num)
