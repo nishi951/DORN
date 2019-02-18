@@ -10,9 +10,22 @@ import json
 from split_utils import build_index
 from loss import delta, mse, rel_abs_diff, rel_sqr_diff
 
+parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+# parser.add_argument('--filename', type=str, default='./data/NYUV2/demo_01.png', help='path to an image')
+parser.add_argument('--rootdir', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed",
+                    help="rootdir of dataset")
+parser.add_argument('--blacklist', type=str,
+                    default="/home/markn1/spad_single/data/nyu_depth_v2_processed/blacklist.txt",
+                    help="images to not calculate losses on")
+parser.add_argument('--indexfile', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed/val.json",
+                    help="index of dataset to load")
+parser.add_argument('--outputroot', type=str, default='./result/NYUV2/nohints', help='output path')
+parser.add_argument('--outputlosses', type=str, default='./result/NYUV2/nohints/losses.json',
+                    help="records average losses on whole dataset")
+parser.add_argument('--max-depth', type=float, default=10.0)
+parser.add_argument('--min_depth', type=float, default=0.0)
 
-
-def depth_prediction(filename):
+def depth_prediction(filename, net, pixel_means):
     img = cv2.imread(filename, cv2.IMREAD_COLOR)
     img = img.astype(np.float32)
     H = img.shape[0]
@@ -64,26 +77,18 @@ class AddDepthMask(): # pylint: disable=too-few-public-methods
         sample["eps"] = np.array([eps])
         return sample
 
+
 def convert_to_uint8(img, min_val, max_val):
     return np.uint8((img - min_val)/(max_val - min_val)*255.0)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    # parser.add_argument('--filename', type=str, default='./data/NYUV2/demo_01.png', help='path to an image')
-    parser.add_argument('--rootdir', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed", help="rootdir of dataset")
-    parser.add_argument('--blacklist', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed/blacklist.txt", help="images to not calculate losses on")
-    parser.add_argument('--indexfile', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed/val.json", help="index of dataset to load")
-    parser.add_argument('--outputroot', type=str, default='./result/NYUV2/nohints', help='output path')
-    parser.add_argument('--outputlosses', type=str, default='./result/NYUV2/nohints/losses.json', help="records average losses on whole dataset")
-    parser.add_argument('--max-depth', type=float, default=10.0)
-    parser.add_argument('--min_depth', type=float, default=0.0)
+    args = parser.parse_args()
 
     caffe.set_mode_gpu()
     caffe.set_device(0)
     net = caffe.Net('models/NYUV2/deploy.prototxt', 'models/NYUV2/cvpr_nyuv2.caffemodel', caffe.TEST)
     pixel_means = np.array([[[103.0626, 115.9029, 123.1516]]])
 
-    args = parser.parse_args()
     with open(args.indexfile, 'r') as f:
         index = json.load(f)
 
@@ -130,7 +135,7 @@ if __name__ == '__main__':
         cv2.imwrite(str(args.outputroot + '/' + img_id + '_pred.png'), depth_img)
 
         # Write ground truth to file
-        truth_img = convert_to_uint8(depth, args.min_depth, args.max_depth)
+        truth_img = convert_to_uint8(depth_truth, args.min_depth, args.max_depth)
         cv2.imwrite(str(args.outputroot + '/' + img_id + '_truth.png'), truth_img)
 
         #TESTING
