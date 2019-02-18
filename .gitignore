@@ -1,2 +1,4 @@
 *.caffemodel
 *.png
+*.npy
+*.pyc
