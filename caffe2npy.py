@@ -2,6 +2,7 @@
 import caffe
 import argparse
 import numpy as np
+from collections import OrderedDict
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
@@ -17,7 +18,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     net = caffe.Net(args.proto_path, args.caffemodel_path, caffe.TRAIN)
 
-    layers = {}
+    layers = OrderedDict()
     for name, params in net.params.items():
         layers[name] = {}
         # probably only works for DORN's caffe model...

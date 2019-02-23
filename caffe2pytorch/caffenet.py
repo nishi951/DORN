@@ -12,7 +12,7 @@ from collections import OrderedDict
 from .prototxt import *
 import caffe
 import caffe.proto.caffe_pb2 as caffe_pb2
-from torch.legacy.nn import SpatialCrossMapLRN as SpatialCrossMapLRNOld
+# from torch.legacy.nn import SpatialCrossMapLRN as SpatialCrossMapLRNOld
 from itertools import product as product
 from .detection import Detection, MultiBoxLoss
 
@@ -619,8 +619,14 @@ class CaffeNet(nn.Module):
                 i = i + 1
             elif ltype == 'BatchNorm':
                 print('load weights %s' % lname)
-                self.models[lname].running_mean.copy_(torch.from_numpy(np.array(lmap[lname].blobs[0].data) / lmap[lname].blobs[2].data[0]))
-                self.models[lname].running_var.copy_(torch.from_numpy(np.array(lmap[lname].blobs[1].data) / lmap[lname].blobs[2].data[0]))
+                if len(lmap[lname].blobs) > 3:
+                    self.models[lname].weight.copy_(torch.from_numpy(np.array(lmap[lname].blobs[0].data)))
+                    self.models[lname].bias.copy_(torch.from_numpy(np.array(lmap[lname].blobs[1].data)))
+                    self.models[lname].running_mean.copy_(torch.from_numpy(np.array(lmap[lname].blobs[2].data)))
+                    self.models[lname].running_var.copy_(torch.from_numpy(np.array(lmap[lname].blobs[3].data)))
+                else:
+                    self.models[lname].running_mean.copy_(torch.from_numpy(np.array(lmap[lname].blobs[0].data) / lmap[lname].blobs[2].data[0]))
+                    self.models[lname].running_var.copy_(torch.from_numpy(np.array(lmap[lname].blobs[1].data) / lmap[lname].blobs[2].data[0]))
                 i = i + 1
             elif ltype == 'Scale':
                 print('load weights %s' % lname)
@@ -728,10 +734,10 @@ class CaffeNet(nn.Module):
                 blob_width[tname] = (blob_width[bname] + 2*pad - kernel_size)/stride + 1
                 blob_height[tname] = (blob_height[bname] + 2*pad - kernel_size)/stride + 1
                 i = i + 1
-            elif ltype == 'BatchNorm':
+            elif ltype == 'BN':
                 momentum = 0.9
-                if layer.has_key('batch_norm_param') and layer['batch_norm_param'].has_key('moving_average_fraction'):
-                    momentum = float(layer['batch_norm_param']['moving_average_fraction'])
+                if layer.has_key('bn_param') and layer['batch_norm_param'].has_key('momentum'):
+                    momentum = float(layer['bn_param']['momentum'])
                 channels = blob_channels[bname]
                 models[lname] = nn.BatchNorm2d(channels, momentum=momentum, affine=False)
                 blob_channels[tname] = channels

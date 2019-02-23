@@ -39,7 +39,9 @@ def depth_prediction(filename, net, pixel_means):
     blobs['data'] = data
     net.blobs['data'].reshape(*(blobs['data'].shape))
     forward_kwargs = {'data': blobs['data'].astype(np.float32, copy=False)}
+
     net.forward(**forward_kwargs)
+
     pred = net.blobs['decode_ord'].data.copy()
     pred = pred[0,0,:,:] - 1.0
     pred = pred/25.0 - 0.36
@@ -93,7 +95,7 @@ if __name__ == '__main__':
         index = json.load(f)
 
     if args.blacklist is not None:
-        print("Loading blacklist from {}".format(args.blacklist))
+        # print("Loading blacklist from {}".format(args.blacklist))
         with open(args.blacklist, "r") as f:
             blacklist = [line.strip() for line in f.readlines()]
 
@@ -107,6 +109,7 @@ if __name__ == '__main__':
     loss_fns.append(("rel_sqr_diff", rel_sqr_diff))
     npixels = 0.
     total_losses = {loss_name: 0. for loss_name, _ in loss_fns}
+
     for entry in index:
         if entry in blacklist:
             continue
@@ -114,7 +117,9 @@ if __name__ == '__main__':
         rgb_file = os.path.join(args.rootdir, index[entry]["rgb"])
         depth_truth_file = os.path.join(args.rootdir, index[entry]["rawdepth"])
 
-        depth = depth_prediction(rgb_file)
+        # import sys
+        # sys.exit()
+        depth = depth_prediction(rgb_file, net, pixel_means)
 
         depth_truth = cv2.imread(depth_truth_file, cv2.IMREAD_ANYDEPTH)
         depth_truth = depth_truth/1000.
@@ -147,7 +152,7 @@ if __name__ == '__main__':
     with open(args.outputlosses, "w") as f:
         json.dump(avg_losses, f)
     print("avg_losses")
-    print(avg_losses)
+    # print(avg_losses)
 
 
 
