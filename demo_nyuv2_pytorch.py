@@ -11,7 +11,13 @@ from split_utils import build_index
 from loss import delta, mse, rel_abs_diff, rel_sqr_diff
 
 from demo_nyuv2_full import parser, depth_prediction, convert_to_uint8
-from DORN_pytorch import DORN
+from DORN_nyu import DORN
+
+def load_net_from_numpy(net, param_file, encoding="latin1"):
+    layers = np.load(f, encoding=encoding)
+    print(layers)
+
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
@@ -19,7 +25,7 @@ if __name__ == '__main__':
     # caffe.set_mode_gpu()
     # caffe.set_device(0)
     # net = caffe.Net('models/NYUV2/deploy.prototxt', 'models/NYUV2/cvpr_nyuv2.caffemodel', caffe.TEST)
-    net = DORN
+    net = DORN()
     pixel_means = np.array([[[103.0626, 115.9029, 123.1516]]])
 
     with open(args.indexfile, 'r') as f:
