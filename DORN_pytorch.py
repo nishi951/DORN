@@ -47,8 +47,8 @@ class DORN_nyu(nn.Module):
         self.conv2_2_3x3_bn = nn.BatchNorm2d(64, momentum=0.95)
         self.conv2_2_3x3_relu = nn.ReLU(inplace=True)
 
-        self.conv2_1_1x1_increase = nn.Conv2d(64, 256, kernel_size=1, stride=1, bias=False)
-        self.conv2_1_1x1_increase_bn = nn.BatchNorm2d(256, momentum=0.95)
+        self.conv2_2_1x1_increase = nn.Conv2d(64, 256, kernel_size=1, stride=1, bias=False)
+        self.conv2_2_1x1_increase_bn = nn.BatchNorm2d(256, momentum=0.95)
 
         self.conv2_2_relu = nn.ReLU(inplace=True)
 
@@ -229,18 +229,18 @@ class DORN_nyu(nn.Module):
         self.conv4_7_relu = nn.ReLU(inplace=True)
 
         ### conv4_8
-        self.conv4_4_1x1_reduce = nn.Conv2d(1024, 256, kernel_size=1, bias=False)
-        self.conv4_4_1x1_reduce_bn = nn.BatchNorm2d(256, momentum=0.95)
-        self.conv4_4_1x1_reduce_relu = nn.ReLU(inplace=True)
+        self.conv4_8_1x1_reduce = nn.Conv2d(1024, 256, kernel_size=1, bias=False)
+        self.conv4_8_1x1_reduce_bn = nn.BatchNorm2d(256, momentum=0.95)
+        self.conv4_8_1x1_reduce_relu = nn.ReLU(inplace=True)
 
-        self.conv4_4_3x3 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=2, dilation=2, bias=False)
-        self.conv4_4_3x3_bn = nn.BatchNorm2d(256, momentum=0.95)
-        self.conv4_4_3x3_relu = nn.ReLU(inplace=True)
+        self.conv4_8_3x3 = nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=2, dilation=2, bias=False)
+        self.conv4_8_3x3_bn = nn.BatchNorm2d(256, momentum=0.95)
+        self.conv4_8_3x3_relu = nn.ReLU(inplace=True)
 
-        self.conv4_4_1x1_increase = nn.Conv2d(256, 1024, kernel_size=1, stride=1, bias=False)
-        self.conv4_4_1x1_increase_bn = nn.BatchNorm2d(1024, momentum=0.95)
+        self.conv4_8_1x1_increase = nn.Conv2d(256, 1024, kernel_size=1, stride=1, bias=False)
+        self.conv4_8_1x1_increase_bn = nn.BatchNorm2d(1024, momentum=0.95)
 
-        self.conv4_4_relu = nn.ReLU(inplace=True)
+        self.conv4_8_relu = nn.ReLU(inplace=True)
 
         ### conv4_9
         self.conv4_9_1x1_reduce = nn.Conv2d(1024, 256, kernel_size=1, bias=False)
@@ -461,8 +461,8 @@ class DORN_nyu(nn.Module):
         self.conv5_1_3x3_bn = nn.BatchNorm2d(512, momentum=0.95)
         self.conv5_1_3x3_relu = nn.ReLU(inplace=True)
 
-        self.conv5_1_1x1_increase = nn.Conv2d(512, 1024, kernel_size=1, stride=1, bias=False)
-        self.conv5_1_1x1_increase_bn = nn.BatchNorm2d(1024, momentum=0.95)
+        self.conv5_1_1x1_increase = nn.Conv2d(512, 2048, kernel_size=1, stride=1, bias=False)
+        self.conv5_1_1x1_increase_bn = nn.BatchNorm2d(2048, momentum=0.95)
 
         # proj skip
         self.conv5_1_1x1_proj = nn.Conv2d(1024, 2048, kernel_size=1, stride=1, bias=False)
@@ -475,18 +475,18 @@ class DORN_nyu(nn.Module):
         self.conv5_2_1x1_reduce_bn = nn.BatchNorm2d(512, momentum=0.95)
         self.conv5_2_1x1_reduce_relu = nn.ReLU(inplace=True)
 
-        self.conv4_2_3x3 = nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=4, dilation=4, bias=False)
-        self.conv4_2_3x3_bn = nn.BatchNorm2d(512, momentum=0.95)
-        self.conv4_2_3x3_relu = nn.ReLU(inplace=True)
+        self.conv5_2_3x3 = nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=4, dilation=4, bias=False)
+        self.conv5_2_3x3_bn = nn.BatchNorm2d(512, momentum=0.95)
+        self.conv5_2_3x3_relu = nn.ReLU(inplace=True)
 
-        self.conv4_2_1x1_increase = nn.Conv2d(512, 2048, kernel_size=1, stride=1, bias=False)
-        self.conv4_2_1x1_increase_bn = nn.BatchNorm2d(2048, momentum=0.95)
+        self.conv5_2_1x1_increase = nn.Conv2d(512, 2048, kernel_size=1, stride=1, bias=False)
+        self.conv5_2_1x1_increase_bn = nn.BatchNorm2d(2048, momentum=0.95)
 
-        self.conv4_2_relu = nn.ReLU(inplace=True)
+        self.conv5_2_relu = nn.ReLU(inplace=True)
 
         ### conv5_3
         self.conv5_3_1x1_reduce = nn.Conv2d(2048, 512, kernel_size=1, bias=False)
-        self.conv5_3_1x1_reduce_bn = nn.BatchNorm2d(256, momentum=0.95)
+        self.conv5_3_1x1_reduce_bn = nn.BatchNorm2d(512, momentum=0.95)
         self.conv5_3_1x1_reduce_relu = nn.ReLU(inplace=True)
 
         self.conv5_3_3x3 = nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=4, dilation=4, bias=False)
@@ -521,22 +521,22 @@ class DORN_nyu(nn.Module):
         # ASPP dilation 4
         self.aspp_2_soft = nn.Conv2d(2048, 512, kernel_size=3, padding=4, dilation=4)
         self.relu_aspp_2 = nn.ReLU(inplace=True)
-        self.conv4_6_3 = nn.Conv2d(512, 512, kernel_size=1)
+        self.conv6_3_soft = nn.Conv2d(512, 512, kernel_size=1)
         self.relu6_3 = nn.ReLU(inplace=True)
         # End ASPP dilation 4
 
         # ASPP dilation 8
-        self.aspp_2_soft = nn.Conv2d(2048, 512, kernel_size=3, padding=8, dilation=8)
-        self.relu_aspp_2 = nn.ReLU(inplace=True)
-        self.conv4_6_3 = nn.Conv2d(512, 512, kernel_size=1)
-        self.relu6_3 = nn.ReLU(inplace=True)
+        self.aspp_3_soft = nn.Conv2d(2048, 512, kernel_size=3, padding=8, dilation=8)
+        self.relu_aspp_3 = nn.ReLU(inplace=True)
+        self.conv6_4_soft = nn.Conv2d(512, 512, kernel_size=1)
+        self.relu6_4 = nn.ReLU(inplace=True)
         # End ASPP dilation 8
 
         # ASPP dilation 12
-        self.aspp_2_soft = nn.Conv2d(2048, 512, kernel_size=3, padding=12, dilation=12)
-        self.relu_aspp_2 = nn.ReLU(inplace=True)
-        self.conv4_6_3 = nn.Conv2d(512, 512, kernel_size=1)
-        self.relu6_3 = nn.ReLU(inplace=True)
+        self.aspp_4_soft = nn.Conv2d(2048, 512, kernel_size=3, padding=12, dilation=12)
+        self.relu_aspp_4 = nn.ReLU(inplace=True)
+        self.conv6_5_soft = nn.Conv2d(512, 512, kernel_size=1)
+        self.relu6_5 = nn.ReLU(inplace=True)
         # End ASPP dilation 12
 
         # Concatenate
@@ -596,8 +596,8 @@ class DORN_nyu(nn.Module):
         x1 = self.conv2_2_3x3_bn(x1)
         x1 = self.conv2_2_3x3_relu(x1)
 
-        x1 = self.conv2_1_1x1_increase(x1)
-        x1 = self.conv2_1_1x1_increase_bn(x1)
+        x1 = self.conv2_2_1x1_increase(x1)
+        x1 = self.conv2_2_1x1_increase_bn(x1)
 
         x = x + x1
         x = self.conv2_2_relu(x)
@@ -698,7 +698,7 @@ class DORN_nyu(nn.Module):
         x2 = self.conv4_1_1x1_proj_bn(x2)
 
         x = x1 + x2
-        x = self.conv3_1_relu(x)
+        x = self.conv4_1_relu(x)
 
         ### conv4_2
         x1 = self.conv4_2_1x1_reduce(x)
@@ -790,19 +790,19 @@ class DORN_nyu(nn.Module):
         x = self.conv4_7_relu(x)
 
         ## conv4_8
-        x1 = self.conv4_4_1x1_reduce(x)
-        x1 = self.conv4_4_1x1_reduce_bn(x1)
-        x1 = self.conv4_4_1x1_reduce_relu(x1)
+        x1 = self.conv4_8_1x1_reduce(x)
+        x1 = self.conv4_8_1x1_reduce_bn(x1)
+        x1 = self.conv4_8_1x1_reduce_relu(x1)
 
-        x1 = self.conv4_4_3x3(x1)
-        x1 = self.conv4_4_3x3_bn(x1)
-        x1 = self.conv4_4_3x3_relu(x1)
+        x1 = self.conv4_8_3x3(x1)
+        x1 = self.conv4_8_3x3_bn(x1)
+        x1 = self.conv4_8_3x3_relu(x1)
 
-        x1 = self.conv4_4_1x1_increase(x1)
-        x1 = self.conv4_4_1x1_increase_bn(x1)
+        x1 = self.conv4_8_1x1_increase(x1)
+        x1 = self.conv4_8_1x1_increase_bn(x1)
 
         x = x + x1
-        x = self.conv4_4_relu(x)
+        x = self.conv4_8_relu(x)
 
         ### conv4_9
         x1 = self.conv4_9_1x1_reduce(x)
@@ -1104,22 +1104,22 @@ class DORN_nyu(nn.Module):
         # ASPP dilation 4
         x3 = self.aspp_2_soft(x)
         x3 = self.relu_aspp_2(x3)
-        x3 = self.conv4_6_3(x3)
+        x3 = self.conv6_3(x3)
         x3 = self.relu6_3(x3)
         # End ASPP dilation 4
 
         # ASPP dilation 8
-        x4 = self.aspp_2_soft(x)
-        x4 = self.relu_aspp_2(x4)
-        x4 = self.conv4_6_3(x4)
-        x4 = self.relu6_3(x4)
+        x4 = self.aspp_3_soft(x)
+        x4 = self.relu_aspp_3(x4)
+        x4 = self.conv6_4(x4)
+        x4 = self.relu6_4(x4)
         # End ASPP dilation 8
 
         # ASPP dilation 12
-        x5 = self.aspp_2_soft(x)
-        x5 = self.relu_aspp_2(x5)
-        x5 = self.conv4_6_3(x5)
-        x5 = self.relu6_3(x5)
+        x5 = self.aspp_4_soft(x)
+        x5 = self.relu_aspp_4(x5)
+        x5 = self.conv6_5(x5)
+        x5 = self.relu6_5(x5)
         # End ASPP dilation 12
 
         # Concatenate
