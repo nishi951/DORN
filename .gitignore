@@ -2,3 +2,4 @@
 *.png
 *.npy
 *.pyc
+*.pth.tar

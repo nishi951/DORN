@@ -17,7 +17,7 @@ parser.add_argument('--rootdir', type=str, default="/home/markn1/spad_single/dat
 parser.add_argument('--blacklist', type=str,
                     default="/home/markn1/spad_single/data/nyu_depth_v2_processed/blacklist.txt",
                     help="images to not calculate losses on")
-parser.add_argument('--indexfile', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed/val.json",
+parser.add_argument('--indexfile', type=str, default="/home/markn1/spad_single/data/nyu_depth_v2_processed/test.json",
                     help="index of dataset to load")
 parser.add_argument('--outputroot', type=str, default='./result/NYUV2/nohints', help='output path')
 parser.add_argument('--outputlosses', type=str, default='./result/NYUV2/nohints/losses.json',
