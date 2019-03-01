@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f4ccce0-1eba-4540-a485-9aa8e229b5a2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/NYUV2/deploy_probs.prototxt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/NYUV2/deploy_resnet.prototxt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/precompute_depth_probs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/convert_DORN_to_pytorch-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/convert_DORN_to_pytorch.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/train_with_probs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/val_with_probs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/load_numpy_weights_DORN-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DORN_pytorch.py" beforeDir="false" afterPath="$PROJECT_DIR$/DORN_pytorch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_nyuv2_full.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo_nyuv2_full.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/load_numpy_weights_DORN.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/load_numpy_weights_DORN.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/NYUV2/deploy2.prototxt" beforeDir="false" afterPath="$PROJECT_DIR$/models/NYUV2/deploy2.prototxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/NYUV2/deploy_probs.prototxt" beforeDir="false" afterPath="$PROJECT_DIR$/models/NYUV2/deploy_probs.prototxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/NYUV2/deploy_resnet.prototxt" beforeDir="false" afterPath="$PROJECT_DIR$/models/NYUV2/deploy_resnet.prototxt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +52,7 @@
             <entry file="file://$PROJECT_DIR$/demo_nyuv2.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="191">
-                  <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+                  <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -60,7 +64,7 @@
             <entry file="file://$PROJECT_DIR$/models/NYUV2/deploy.prototxt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="9178">
-                  <caret line="6813" lean-forward="true" selection-start-line="6813" selection-end-line="6813" />
+                  <caret line="6813" selection-start-line="6813" selection-end-line="6813" />
                 </state>
               </provider>
             </entry>
@@ -78,7 +82,7 @@
             <entry file="file://$PROJECT_DIR$/models/NYUV2/deploy2.prototxt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-7053">
-                  <caret line="6688" column="22" lean-forward="true" selection-start-line="6688" selection-start-column="22" selection-end-line="6688" selection-end-column="22" />
+                  <caret line="6688" column="22" selection-start-line="6688" selection-start-column="22" selection-end-line="6688" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -90,8 +94,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/DORN_pytorch.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8890">
-                  <caret line="508" column="45" lean-forward="true" selection-start-line="508" selection-start-column="45" selection-end-line="508" selection-end-column="45" />
+                <state relative-caret-position="-1350">
+                  <caret line="574" column="8" selection-start-line="574" selection-start-column="8" selection-end-line="574" selection-end-column="8" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                   </folding>
@@ -127,7 +131,7 @@
             <entry file="file://$PROJECT_DIR$/models/NYUV2/deploy_probs.prototxt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="685">
-                  <caret line="7200" lean-forward="true" selection-start-line="7200" selection-end-line="7200" />
+                  <caret line="7200" selection-start-line="7200" selection-end-line="7200" />
                 </state>
               </provider>
             </entry>
@@ -136,7 +140,7 @@
             <entry file="file://$PROJECT_DIR$/caffe/src/caffe/layers/interp_layer.cpp">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="840">
-                  <caret line="56" column="3" lean-forward="true" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
+                  <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
@@ -293,12 +297,12 @@
       <option name="presentableId" value="Default" />
       <updated>1550105918422</updated>
       <workItem from="1550105920085" duration="32963000" />
-      <workItem from="1550735348468" duration="45680000" />
+      <workItem from="1550735348468" duration="45887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78643000" />
+    <option name="totallyTimeSpent" value="78850000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,7 +500,7 @@
     <entry file="file://$PROJECT_DIR$/demo_nyuv2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -509,7 +513,7 @@
     <entry file="file://$PROJECT_DIR$/models/NYUV2/deploy2.prototxt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7053">
-          <caret line="6688" column="22" lean-forward="true" selection-start-line="6688" selection-start-column="22" selection-end-line="6688" selection-end-column="22" />
+          <caret line="6688" column="22" selection-start-line="6688" selection-start-column="22" selection-end-line="6688" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -536,14 +540,14 @@
     <entry file="file://$PROJECT_DIR$/models/NYUV2/deploy_probs.prototxt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="685">
-          <caret line="7200" lean-forward="true" selection-start-line="7200" selection-end-line="7200" />
+          <caret line="7200" selection-start-line="7200" selection-end-line="7200" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/caffe/src/caffe/layers/interp_layer.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
-          <caret line="56" column="3" lean-forward="true" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
+          <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -557,7 +561,7 @@
     <entry file="file://$PROJECT_DIR$/models/NYUV2/deploy.prototxt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9178">
-          <caret line="6813" lean-forward="true" selection-start-line="6813" selection-end-line="6813" />
+          <caret line="6813" selection-start-line="6813" selection-end-line="6813" />
         </state>
       </provider>
     </entry>
@@ -568,8 +572,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DORN_pytorch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8890">
-          <caret line="508" column="45" lean-forward="true" selection-start-line="508" selection-start-column="45" selection-end-line="508" selection-end-column="45" />
+        <state relative-caret-position="-1350">
+          <caret line="574" column="8" selection-start-line="574" selection-start-column="8" selection-end-line="574" selection-end-column="8" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

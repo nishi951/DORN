@@ -572,6 +572,7 @@ class DORN_nyu(nn.Module):
 
         x = self.pool1_3x3_s2(x)
         # self.conv1_out = x.clone()
+
         ### conv2_1 (reduce)
         x1 = self.conv2_1_1x1_reduce(x)
         x1 = self.conv2_1_1x1_reduce_bn(x1)
@@ -687,6 +688,7 @@ class DORN_nyu(nn.Module):
         x = self.conv3_4_relu(x)
         # print("conv3", x.size())
         # self.conv3_out = x.clone()
+
         ### conv4_1 (reduce)
         x1 = self.conv4_1_1x1_reduce(x)
         x1 = self.conv4_1_1x1_reduce_bn(x1)
